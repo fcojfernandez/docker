@@ -33,7 +33,7 @@ download() {
             # some plugin don't follow the rules about artifact ID
             # typically: docker-plugin
             originalPlugin="$plugin"
-            plugin="${plugin}-plugin"
+            # plugin="${plugin}-plugin"
             if ! doDownload "$plugin" "$version" "$url"; then
                 echo "Failed to download plugin: $originalPlugin or $plugin" >&2
                 echo "Not downloaded: ${originalPlugin}" >> "$FAILED"
