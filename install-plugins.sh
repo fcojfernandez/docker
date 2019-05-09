@@ -145,8 +145,10 @@ resolveDependencies() {
 }
 
 bundledPlugins() {
+    echo "Entering bundledPlugins"
     local JENKINS_WAR=/usr/share/jenkins/jenkins.war
     echo "-->$JENKINS_WAR"
+    ls $JENKINS_WAR
     if [ -f $JENKINS_WAR ]
     then
         TEMP_PLUGIN_DIR=/tmp/plugintemp.$$
@@ -196,6 +198,7 @@ jenkinsMajorMinorVersion() {
 }
 
 main() {
+    echo "HOLA FRAN!"
     local plugin jenkinsVersion
     local plugins=()
 
