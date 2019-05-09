@@ -2,7 +2,7 @@
 
 # Resolve dependencies and download plugins given on the command line
 #
-# FROM jenkins
+# FROM jenkins 
 # RUN install-plugins.sh docker-slaves github-branch-source
 
 set -o pipefail
