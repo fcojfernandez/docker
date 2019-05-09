@@ -258,8 +258,8 @@ main() {
 
     echo
     echo "WAR bundled plugins:"
-    echo "${bundledPlugins}"
-    echo
+    # echo "${bundledPlugins}"
+    echo "ya si eso"echo
     echo "Installed plugins:"
     # installedPlugins
     echo "ya si eso"
