@@ -131,6 +131,7 @@ resolveDependencies() {
                 pluginInstalled="${pluginInstalled//[$'\r']}"
                 local versionInstalled; versionInstalled=$(versionFromPlugin "${pluginInstalled}")
                 local minVersion; minVersion=$(versionFromPlugin "${d}")
+                echo "AQUI: ${versionInstalled} ${minVersion}"
                 if versionLT "${versionInstalled}" "${minVersion}"; then
                     echo "Upgrading bundled dependency $d ($minVersion > $versionInstalled)"
                     download "$plugin" &
