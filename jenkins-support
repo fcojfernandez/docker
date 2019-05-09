@@ -2,9 +2,6 @@
 
 # compare if version1 < version2
 versionLT() {
-    echo "aqui vamos"
-    echo "1: $1"
-    echo "2: $2"
     local v1; v1=$(echo "$1" | cut -d '-' -f 1 )
     local q1; q1=$(echo "$1" | cut -s -d '-' -f 2- )
     local v2; v2=$(echo "$2" | cut -d '-' -f 1 )

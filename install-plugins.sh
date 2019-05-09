@@ -2,7 +2,7 @@
 
 # Resolve dependencies and download plugins given on the command line
 #
-# FROM jenkins 
+# FROM jenkins
 # RUN install-plugins.sh docker-slaves github-branch-source
 
 set -o pipefail
@@ -10,7 +10,7 @@ set -o pipefail
 REF_DIR=${REF:-/usr/share/jenkins/ref/plugins}
 FAILED="$REF_DIR/failed-plugins.txt"
 
-. ./usr/local/bin/jenkins-support
+. /usr/local/bin/jenkins-support
 
 getLockFile() {
     printf '%s' "$REF_DIR/${1}.lock"
@@ -33,7 +33,6 @@ download() {
             # some plugin don't follow the rules about artifact ID
             # typically: docker-plugin
             originalPlugin="$plugin"
-            # plugin="${plugin}-plugin"
             if ! doDownload "$plugin" "$version" "$url"; then
                 echo "Failed to download plugin: $originalPlugin or $plugin" >&2
                 echo "Not downloaded: ${originalPlugin}" >> "$FAILED"
@@ -90,7 +89,6 @@ doDownload() {
     # We actually want to allow variable value to be split into multiple options passed to curl.
     # This is needed to allow long options and any options that take value.
     # shellcheck disable=SC2086
-    echo "Vamos a ejecutar curl ${CURL_OPTIONS:--sSfL} --connect-timeout ${CURL_CONNECTION_TIMEOUT:-20} --retry ${CURL_RETRY:-3} --retry-delay ${CURL_RETRY_DELAY:-0} --retry-max-time ${CURL_RETRY_MAX_TIME:-60} $url -o $jpi hasta aqui"
     retry_command curl ${CURL_OPTIONS:--sSfL} --connect-timeout "${CURL_CONNECTION_TIMEOUT:-20}" --retry "${CURL_RETRY:-3}" --retry-delay "${CURL_RETRY_DELAY:-0}" --retry-max-time "${CURL_RETRY_MAX_TIME:-60}" "$url" -o "$jpi"
     return $?
 }
@@ -131,7 +129,6 @@ resolveDependencies() {
                 pluginInstalled="${pluginInstalled//[$'\r']}"
                 local versionInstalled; versionInstalled=$(versionFromPlugin "${pluginInstalled}")
                 local minVersion; minVersion=$(versionFromPlugin "${d}")
-                echo "AQUI: ${versionInstalled} ${minVersion}"
                 if versionLT "${versionInstalled}" "${minVersion}"; then
                     echo "Upgrading bundled dependency $d ($minVersion > $versionInstalled)"
                     download "$plugin" &
@@ -148,7 +145,6 @@ resolveDependencies() {
 
 bundledPlugins() {
     local JENKINS_WAR=/usr/share/jenkins/jenkins.war
-    ls $JENKINS_WAR
     if [ -f $JENKINS_WAR ]
     then
         TEMP_PLUGIN_DIR=/tmp/plugintemp.$$
@@ -198,7 +194,6 @@ jenkinsMajorMinorVersion() {
 }
 
 main() {
-    echo "HOLA FRAN!"
     local plugin jenkinsVersion
     local plugins=()
 
@@ -258,11 +253,9 @@ main() {
 
     echo
     echo "WAR bundled plugins:"
-    # echo "${bundledPlugins}"
-    echo "ya si eso"echo
+    echo "${bundledPlugins}"
     echo "Installed plugins:"
-    # installedPlugins
-    echo "ya si eso"
+    installedPlugins
 
     if [[ -f $FAILED ]]; then
         echo "Some plugins failed to download!" "$(<"$FAILED")" >&2
