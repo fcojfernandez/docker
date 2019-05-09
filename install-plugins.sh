@@ -90,7 +90,7 @@ doDownload() {
     # We actually want to allow variable value to be split into multiple options passed to curl.
     # This is needed to allow long options and any options that take value.
     # shellcheck disable=SC2086
-    echo "--> curl ${CURL_OPTIONS:--sSfL} --connect-timeout ${CURL_CONNECTION_TIMEOUT:-20} --retry ${CURL_RETRY:-3} --retry-delay ${CURL_RETRY_DELAY:-0} --retry-max-time ${CURL_RETRY_MAX_TIME:-60} $url -o $jpi"
+    echo "Vamos a ejecutar curl ${CURL_OPTIONS:--sSfL} --connect-timeout ${CURL_CONNECTION_TIMEOUT:-20} --retry ${CURL_RETRY:-3} --retry-delay ${CURL_RETRY_DELAY:-0} --retry-max-time ${CURL_RETRY_MAX_TIME:-60} $url -o $jpi hasta aqui"
     retry_command curl ${CURL_OPTIONS:--sSfL} --connect-timeout "${CURL_CONNECTION_TIMEOUT:-20}" --retry "${CURL_RETRY:-3}" --retry-delay "${CURL_RETRY_DELAY:-0}" --retry-max-time "${CURL_RETRY_MAX_TIME:-60}" "$url" -o "$jpi"
     return $?
 }
@@ -146,9 +146,7 @@ resolveDependencies() {
 }
 
 bundledPlugins() {
-    echo "Entering bundledPlugins"
     local JENKINS_WAR=/usr/share/jenkins/jenkins.war
-    echo "-->$JENKINS_WAR"
     ls $JENKINS_WAR
     if [ -f $JENKINS_WAR ]
     then
