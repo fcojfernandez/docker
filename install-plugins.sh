@@ -254,6 +254,7 @@ main() {
     echo
     echo "WAR bundled plugins:"
     echo "${bundledPlugins}"
+    echo
     echo "Installed plugins:"
     installedPlugins
 
