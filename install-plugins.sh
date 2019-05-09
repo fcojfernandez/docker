@@ -261,7 +261,8 @@ main() {
     echo "${bundledPlugins}"
     echo
     echo "Installed plugins:"
-    installedPlugins
+    # installedPlugins
+    echo "ya si eso"
 
     if [[ -f $FAILED ]]; then
         echo "Some plugins failed to download!" "$(<"$FAILED")" >&2
