@@ -146,6 +146,7 @@ resolveDependencies() {
 
 bundledPlugins() {
     local JENKINS_WAR=/usr/share/jenkins/jenkins.war
+    echo "$JENKINS_WAR"
     if [ -f $JENKINS_WAR ]
     then
         TEMP_PLUGIN_DIR=/tmp/plugintemp.$$
